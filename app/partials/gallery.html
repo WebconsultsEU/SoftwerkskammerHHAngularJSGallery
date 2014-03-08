@@ -1,0 +1,7 @@
+<h1>Gallery</h1>
+<img data-ng-src="{{bigImageUrl}}" alt="example image" style="max-width: 600px; max-height:600px">
+
+<a data-ng-repeat="imageUrl in imageUrlList">
+    {{ $index }}
+    <img data-ng-click="changeBigImage($index)"  data-ng-src="{{imageUrl.url}}" alt="example image" style="max-width: 200px; max-height:200px">
+</a>

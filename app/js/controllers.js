@@ -9,24 +9,25 @@ angular.module('myApp.controllers', []).
   .controller('MyCtrl2', [function() {
 
   }])
-  .controller('ImageCtrl', ['$scope', 'Images', function($scope, Images) {
-    $scope.bigImageUrl = 'pictures/wacken/01.JPG';
-    $scope.imageUrlList = Images.query();
-    /* $scope.imageUrlList = ['pictures/wacken/01.JPG',
-                        'pictures/wacken/02.JPG',
-                        'pictures/wacken/03.JPG',
-                        'pictures/wacken/04.JPG',
-                        'pictures/wacken/05.JPG',
-                        'pictures/wacken/06.JPG',
-                        'pictures/wacken/07.JPG',
-                        'pictures/wacken/08.JPG'
-                       
-                       
-    ];*/
-          
-    $scope.changeBigImage = function (url) {
-        $scope.bigImageUrl = url;
-    }
+  .controller('GalleryCtrl', ['$scope', '$routeParams', '$location', 'Images',  function($scope, $routeParams, $location, Images) {
     
+    
+    
+    
+    $scope.imageUrlList = Images.query(function() {
+        var picnr=$routeParams.pictureId;
+        $scope.bigImageUrl = $scope.imageUrlList[picnr].url;
+    });
+   
+    $scope.bigImageUrl = 'pictures/wacken/01.JPG';
+    $scope.changeBigImage = function (picnr) {        
+        $scope.bigImageUrl = $scope.imageUrlList[picnr].url;        
+        //Route.goto($scope.bigImageUrl+"ab");
+        $location.path('/gallery'+picnr);  
+    }
+    /*$scope.$watch('foo', function(newVal){
+          
+        });
+    */
     
   }]);

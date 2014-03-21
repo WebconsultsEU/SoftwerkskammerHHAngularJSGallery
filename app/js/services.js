@@ -12,5 +12,10 @@ angular.module('myApp.services', ['ngResource']).
       });   
       
   })
+  .factory('Galleries', function($resource) {
+      return $resource ('pictures/galleries.json', {}, {query: {method: 'GET', isArray:true}
+      });   
+      
+  })
 ;
   
